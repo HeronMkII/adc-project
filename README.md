@@ -81,12 +81,22 @@ For this project, you will use the Manual mode to get measurements, so ignore th
 
 ## Project Requirements
 
+### Library
+
 In this project, you will first create a **library**, which is a collection of functions and data to control a particular component. You will write the ADC library in the files `adc.c` and `adc.h`.
 
 You will need to write the following functions:
 - a function that will be called once at the beginning of the program to initialize the microcontroller to communicate with the ADC
-- a function that takes a channel number as a parameter, reads the data for that channel, and returns the "raw" value (represented as a 12-bit value)
+    - no parameters
+    - no return value
+- a function that takes a channel number as a parameter, reads the data for that channel, and returns the "raw" value (a 12-bit value, represented as a `uint16_t` type)
+    - `uint8_t` parameter (channel number)
+    - `uint16_t` return value (raw data)
 - a function that converts the "raw" 12-bit value to a voltage (i.e. the voltage on the ADC's input pin that produced the known 12-bit value)
+    - `uint16_t` parameter (raw data)
+    - `double` return value (voltage in V)
+
+### Test
 
 To test your functions, you will write a program in `main.c` that uses each of these three functions so you can verify they all work. Your main program should first initialize the ADC and other necessary components. Then it should have an infinite loop, where it loops through all 12 channels, reads the raw data, converts it to a voltage, and prints out the results.
 
@@ -106,6 +116,16 @@ main() {
 }
 ```
 
+### Hints
+
+Here are some important concepts you should look into:
+
+- Bitwise operators
+    - https://utat-ss.readthedocs.io/en/master/c-programming/bitwise-operators.html
+    - To see the tables displayed properly: https://github.com/HeronMkII/documentation/blob/master/c-programming/bitwise-operators.md
+- SPI communication - send SPI commands and receive data back
+    - Note the steps for sending SPI messages: https://utat-ss.readthedocs.io/en/master/communication-protocols/spi.html
+    - Note which pin on the 32M1 is connected to the ADC's CS pin (page 8): https://github.com/HeronMkII/pcbs/blob/master/payload/pay-ssm/pay-ssm.pdf
 
 ## Committing and Pushing to GitHub
 
