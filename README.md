@@ -44,6 +44,7 @@ $ make
 
 If it runs without errors, the compilation was successful. If there were errors, ask for help.
 
+
 ## Editing the Program
 
 Now, you need to write the code for your program. You write the code in a text editor such as Atom, save your files, then compile and upload the program to a board from the command line.
@@ -51,13 +52,16 @@ Now, you need to write the code for your program. You write the code in a text e
 From GitHub Desktop, click "Current Repository" in the top left, right click "adc-project", and click "Open in Atom". Now, you can use Atom to edit the files (`adc.c`, `adc.h`, and `main.c`).
 
 
-## SPI
+## Concepts
 
-SPI (Serial Peripheral Interface) is a communication protocol used to interface with and control sensors and other devices within the same subsystem.
+Here are some important concepts you should look into:
 
-Read over the section of our documentation on SPI. Don't worry if you don't understand everything since we can take time to clarify points.
-
-https://utat-ss.readthedocs.io/en/master/communication-protocols/spi.html
+- Bitwise operators: https://utat-ss.readthedocs.io/en/master/c-programming/bitwise-operators.html
+    - To see the tables displayed properly: https://github.com/HeronMkII/documentation/blob/master/c-programming/bitwise-operators.md
+- SPI (Serial Peripheral Interface) communication: https://utat-ss.readthedocs.io/en/master/communication-protocols/spi.html
+    - Note the steps to send SPI commands and receive data back:
+    - In the electrical schematics, note which pin on the 32M1 is connected to the ADC's CS pin (page 8): https://github.com/HeronMkII/pcbs/blob/master/payload/pay-ssm/pay-ssm.pdf
+- Integer types: https://utat-ss.readthedocs.io/en/master/c-programming/integer-types.html
 
 
 ## Datasheet
@@ -116,16 +120,6 @@ main() {
 }
 ```
 
-### Hints
-
-Here are some important concepts you should look into:
-
-- Bitwise operators
-    - https://utat-ss.readthedocs.io/en/master/c-programming/bitwise-operators.html
-    - To see the tables displayed properly: https://github.com/HeronMkII/documentation/blob/master/c-programming/bitwise-operators.md
-- SPI communication - send SPI commands and receive data back
-    - Note the steps for sending SPI messages: https://utat-ss.readthedocs.io/en/master/communication-protocols/spi.html
-    - Note which pin on the 32M1 is connected to the ADC's CS pin (page 8): https://github.com/HeronMkII/pcbs/blob/master/payload/pay-ssm/pay-ssm.pdf
 
 ## Committing and Pushing to GitHub
 
