@@ -80,8 +80,27 @@ Here are the most relevant pages for your project:
 - p.18-19 - SPI timing diagrams
 - p.28-45 - operational overview, software interfacing, control bits
 
-For this project, you will use the Manual mode to get measurements, so ignore the sections in p.28-45 that relate to Auto-1 mode or Auto-2 mode.
+For this project, you will use the Manual mode to get measurements, so ignore the sections that relate to Auto-1 mode or Auto-2 mode.
 
+### Settings
+
+Look at the table on p.32 for Manual mode. Here are the following settings you need:
+
+| Bits  | State (in binary)     | Description                               |
+| :---- | :----                 | :----                                     |
+| 15-12 | 0001                  | Manual mode                               |
+| 11    | 1                     | Program settings using bits 06-00         |
+| 10-07 | varies (default 0000) | Channel number to read                    |
+| 06    | 0                     | 0V to 2.5V measurement range              |
+| 05    | 0                     | No powerdown of chip                      |
+| 04    | 0                     | Chip outputs channel and conversion data  |
+| 03-00 | 0000                  | We don't care about GPIO pins             |
+
+Notice that all settings stay the same except for bits 10-07 (channel number), which varies depending on which channel you are requesting data for.
+
+Say by default the channel bits are 0000, the 16-bit command is `0001 1 0000 0 0 0 0000`. Grouped in sets of 4 bits, this is `0001 1000 0000 0000` or `0x1800` in hexadecimal. You should define the value `0x1800` as a constant in your code.
+
+To construct the 16-bit with the right channel (which varies every time you call the function that fetches raw data for a channel), you need to take the constant defined above and use bitwise operations to combine it with the channel number to get the full command.
 
 ## Project Requirements
 
